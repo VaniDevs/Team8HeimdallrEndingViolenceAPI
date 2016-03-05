@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'firstname', 'lastname', 'email', 'password',
     ];
 
     /**
@@ -23,4 +23,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the contacts that are associated with the user
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Contact');
+    }
+
+    /**
+     * Get the potential threats associated with the user
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Contact');
+    }
 }

@@ -25,9 +25,17 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the incidents that the user has had
+     */
+    public function incidents()
+    {
+        return $this->hasMany('App\Incident');
+    }
+
+    /**
      * Get the contacts that are associated with the user
      */
-    public function comments()
+    public function contacts()
     {
         return $this->belongsToMany('App\Contact');
     }

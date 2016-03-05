@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     public function comments()
     {
-        return $this->hasMany('App\Contact');
+        return $this->belongsToMany('App\Contact');
     }
 
     /**
@@ -37,6 +37,6 @@ class User extends Authenticatable
      */
     public function threats()
     {
-        return $this->hasMany('App\Threat');
+        return $this->belongsToMany('App\Threat');
     }
 }

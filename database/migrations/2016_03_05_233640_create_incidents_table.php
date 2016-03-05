@@ -14,6 +14,7 @@ class CreateIncidentsTable extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid', 48)->unique();
             $table->integer('user_id');
             $table->string('location');
             $table->boolean('resolved');

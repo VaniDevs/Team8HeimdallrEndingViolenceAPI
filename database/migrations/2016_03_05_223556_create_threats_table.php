@@ -14,6 +14,7 @@ class CreateThreatsTable extends Migration
     {
         Schema::create('threats', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid', 48)->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');

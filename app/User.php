@@ -35,8 +35,8 @@ class User extends Authenticatable
     /**
      * Get the potential threats associated with the user
      */
-    public function comments()
+    public function threats()
     {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany('App\Threat');
     }
 }

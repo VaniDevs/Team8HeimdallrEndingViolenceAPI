@@ -94,7 +94,7 @@ class IncidentController extends Controller
         $media->user_id = $user->id;
         $media->uuid = Uuid::generate(4);
 
-        if ($request->has('media')) {
+        if ($request->hasFile('media')) {
             $upload_media = $request->file('media');
 
             Storage::put(

@@ -38,7 +38,7 @@ Route::group(['middleware' => ['web']], function () {
 */
 Route::post('api/auth/login', 'UserController@login');
 
-Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => 'api', 'middleware' => ['auth:api', 'cors']], function () {
   /*
    |--
    | Profile Routes

@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,8 +22,24 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::get('/', function()
+{
+  return View::make('home');
+});
+
+Route::get('/displayusers', function()
+{
+  return View::make('displayusers');
+});
+
+Route::get('/createuser', function()
+{
+  return View::make('createuser');
+});
+
+Route::get('/documentation', function()
+{
+  return View::make('documentation');
 });
 
 

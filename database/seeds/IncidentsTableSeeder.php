@@ -17,7 +17,7 @@ class IncidentsTableSeeder extends Seeder
         Incident::create([
             'uuid' => Uuid::generate(4),
             'user_id' => 1,
-            'location' => 'location_1',
+            'location' => '-149,27',
             'resolved' => true,
             'created_at' => Carbon::now()
         ]);
@@ -25,7 +25,7 @@ class IncidentsTableSeeder extends Seeder
         Incident::create([
             'uuid' => Uuid::generate(4),
             'user_id' => 1,
-            'location' => 'location_2',
+            'location' => '-149,27',
             'resolved' => false,
             'created_at' => Carbon::now()
         ]);
@@ -33,7 +33,7 @@ class IncidentsTableSeeder extends Seeder
         Incident::create([
             'uuid' => Uuid::generate(4),
             'user_id' => 2,
-            'location' => 'location_3',
+            'location' => '-149,27',
             'resolved' => true,
             'created_at' => Carbon::now()
         ]);
@@ -41,7 +41,7 @@ class IncidentsTableSeeder extends Seeder
         Incident::create([
             'uuid' => Uuid::generate(4),
             'user_id' => 2,
-            'location' => 'location_4',
+            'location' => '-149,27',
             'resolved' => false,
             'created_at' => Carbon::now()
         ]);

@@ -71,12 +71,17 @@ class IncidentController extends Controller
 
         if ($user->is_admin) {
             $num = ($page - 1) * 5;
+            $values = array();
+
             $incidents = Incident::skip($num)->take(5)->get();
+            foreach ($incidents as $key => $value) {
+                $values[] = $value->getJSON();
+            }
 
             return response()->json([
                 'code' => 200,
                 'page' => $page,
-                'incidents' => $incidents
+                'incidents' => $values
             ]);
         } else {
             return response()->json([
@@ -94,7 +99,7 @@ class IncidentController extends Controller
         $media->user_id = $user->id;
         $media->uuid = Uuid::generate(4);
 
-        if ($request->file('media')) {
+        if ($request->has('media')) {
             $upload_media = $request->file('media');
 
             Storage::put(

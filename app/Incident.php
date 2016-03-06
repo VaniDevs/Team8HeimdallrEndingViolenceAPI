@@ -56,4 +56,22 @@ class Incident extends Model
 
         return $saved;
     }
+
+    /**
+     * Returns a JSON representation of the USER object
+     */
+    public function getJSON()
+    {
+        $user = User::find($this->user_id);
+
+        return [
+            'uuid' => $this->uuid,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'phone' => $user->phone,
+            'location' => $this->location,
+            'resolved' => $this->resolved,
+            'created_at' => $this->created_at->format('d/m/Y h:i:s A'),
+        ];
+    }
 }

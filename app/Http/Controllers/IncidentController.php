@@ -15,14 +15,7 @@ class IncidentController extends Controller
     public function sendAlert(Request $request)
     {
         if ($request->has('location')) {
-            $user = Auth::guard('api')->user();
-
             $incident = new Incident;
-            $incident->location = $request->location;
-            $incident->uuid = Uuid::generate(4);
-            $incident->user_id = $user->id;
-            $incident->save();
-
             if ($incident->sendIncident($request)) {
                 return response()->json([
                     'code' => 200,

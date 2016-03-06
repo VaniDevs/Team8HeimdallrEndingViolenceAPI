@@ -12,17 +12,10 @@ use Uuid;
 
 class IncidentController extends Controller
 {
-    public function sendAlert(Request $request)
+    public function alertIncident(Request $request)
     {
         if ($request->has('location')) {
-            $user = Auth::guard('api')->user();
-
             $incident = new Incident;
-            $incident->location = $request->location;
-            $incident->uuid = Uuid::generate(4);
-            $incident->user_id = $user->id;
-            $incident->save();
-
             if ($incident->sendIncident($request)) {
                 return response()->json([
                     'code' => 200,
@@ -36,9 +29,35 @@ class IncidentController extends Controller
             }
         } else {
             return response()->json([
-                'code' => 500,
+                'code' => 400,
                 'message' => ['Invalid Data']
             ], 400);
+        }
+    }
+
+    public function resolveIncident(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+
+        if($user->is_admin) {
+            $incident = Incident::where('uuid', $request->incident_id)->first();
+
+            if ($incident != null && $incident->markIncident($request)) {
+                return response()->json([
+                    'code' => 200,
+                    'message' => ['The incident was marked as resolved successfully']
+                ]);
+            } else {
+                return response()->json([
+                    'code' => 500,
+                    'message' => ['An error has occurred']
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'code' => 403,
+                'message' => ['You do not have permission']
+            ], 403);
         }
     }
 }

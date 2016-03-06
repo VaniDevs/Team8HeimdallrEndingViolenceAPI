@@ -42,4 +42,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
   Route::get('allincidents', function() {
     return 'AWESOME';
   });
+
+  Route::patch('profile', 'UserController@updateProfile');
 });

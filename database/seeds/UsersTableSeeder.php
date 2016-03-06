@@ -19,7 +19,8 @@ class UsersTableSeeder extends Seeder
             'address' => str_random(10),
             'photo' => str_random(10),
             'password' => bcrypt('secret'),
-            'api_token' => str_random(60)
+            'api_token' => str_random(60),
+            'phone' => '604-555-5555'
         ]);
     }
 }

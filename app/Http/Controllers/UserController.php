@@ -32,16 +32,20 @@ class UserController extends Controller
     {
         $user = Auth::guard('api')->user();
 
-        if ($request->has('first_name')) {
-            $user->first_name = $request->first_name;
-            $user->save();
+        if ($user->updateInfo($request)) {
+            return response()->json([
+                'code' => 200,
+                'messages' => [
+                    'Profile was updated successfully'
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'code' => 500,
+                'messages' => [
+                    'An error occurred'
+                ]
+            ], 500);
         }
-
-        return response()->json([
-            'code' => 200,
-            'messages' => [
-                'Profile was updated successfully'
-            ]
-        ]);
     }
 }

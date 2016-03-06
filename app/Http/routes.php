@@ -39,12 +39,25 @@ Route::group(['middleware' => ['web']], function () {
 Route::post('api/auth/login', 'UserController@login');
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+  /*
+   |--
+   | Profile Routes
+   |--
+   */
   // Retrieve user profile information
   Route::get('profile', 'UserController@getProfile');
 
   // Updating the profile with new data
   Route::post('profile', 'UserController@updateProfile');
 
+  /*
+   |--
+   | Incident Routes
+   |--
+   */
   // Send an alert to the incident reports
-  Route::post('incident', 'IncidentController@sendAlert');
+  Route::post('incident', 'IncidentController@alertIncident');
+
+  // Update an incident so that it's marked as resolved
+  Route::post('incident/done', 'IncidentController@resolveIncident');
 });

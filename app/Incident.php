@@ -44,4 +44,15 @@ class Incident extends Model
             return $saved;
         }
     }
+
+    /**
+     * Mark an incident as resolved
+     */
+    public function markIncident(Request $request)
+    {
+        $this->resolved = true;
+        $saved = $this->save();
+
+        return $saved;
+    }
 }

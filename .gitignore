@@ -48,10 +48,12 @@ $RECYCLE.BIN/
 
 
 ### Laravel ###
-vendor/
-node_modules/
+/vendor
+/node_modules
+/public/storage
 Homestead.yaml
 Homestead.json
+<<<<<<< HEAD
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -62,8 +64,9 @@ app/storage/
 storage/
 .env.*.php
 .env.php
+=======
+>>>>>>> develop
 .env
-.env.example
 
 
 ### SublimeText ###

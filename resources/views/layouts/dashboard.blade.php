@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url ('') }}">End Violence</a>
+                <a class="navbar-brand" href="{{ url ('') }}">EVA BC Admin Console</a>
             </div>
             <!-- /.navbar-header -->
 

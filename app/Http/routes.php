@@ -39,6 +39,9 @@ Route::group(['middleware' => ['web']], function () {
 Route::post('api/auth/login', 'UserController@login');
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+  // Retrieve user profile information
+  Route::get('profile', 'UserController@getProfile');
+
   // Updating the profile with new data
   Route::post('profile', 'UserController@updateProfile');
 

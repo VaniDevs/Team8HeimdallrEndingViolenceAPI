@@ -70,5 +70,5 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
   Route::post('incident/done', 'IncidentController@resolveIncident');
 
   // ADMIN: get all incident reports
-  Route::get('incident', 'IncidentController@getAllIncidents');
+  Route::get('incident/{page?}', 'IncidentController@getIncidents');
 });

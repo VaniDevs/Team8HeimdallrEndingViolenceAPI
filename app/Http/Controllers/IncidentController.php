@@ -65,17 +65,19 @@ class IncidentController extends Controller
         }
     }
 
-    public function getAllIncidents(Request $request)
+    public function getIncidents(Request $request, $page = 1)
     {
         $user = Auth::guard('api')->user();
 
         if ($user->is_admin) {
-            $incidents = Incident::skip(0)->take(5)->get();
+            $num = ($page - 1) * 5;
+            $incidents = Incident::skip($num)->take(5)->get();
 
             return response()->json([
                 'code' => 200,
+                'page' => $page,
                 'incidents' => $incidents
-            ], 200);
+            ]);
         } else {
             return response()->json([
                 'code' => 403,
@@ -92,19 +94,26 @@ class IncidentController extends Controller
         $media->user_id = $user->id;
         $media->uuid = Uuid::generate(4);
 
-        $upload_media = $request->file('media');
+        if ($request->has('media')) {
+            $upload_media = $request->file('media');
 
-        Storage::put(
-            'media/'.$media->uuid.'.mp4',
-            file_get_contents($upload_media->getRealPath())
-        );
+            Storage::put(
+                'media/'.$media->uuid,
+                file_get_contents($upload_media->getRealPath())
+            );
 
-        $media->save();
+            $media->save();
 
-        return response()->json([
-            'code' => 200,
-            'message' => ['File was uploaded successfully']
-        ], 200);
+            return response()->json([
+                'code' => 200,
+                'message' => ['File was uploaded successfully']
+            ]);
+        } else {
+            return response()->json([
+                'code' => 400,
+                'message' => ['File was not specified']
+            ], 400);
+        }
     }
 
     public function getMedia($uuid, Request $request)

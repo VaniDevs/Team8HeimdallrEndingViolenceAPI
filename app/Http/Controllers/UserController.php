@@ -28,6 +28,24 @@ class UserController extends Controller
         ]);
     }
 
+    public function getProfile(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+
+        return response()->json([
+            'code' => 200,
+            'user_data' => [
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'address' => $user->address,
+                'phone' => $user->phone
+            ],
+            'messages' => [
+                'Success'
+            ]
+        ]);
+    }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::guard('api')->user();

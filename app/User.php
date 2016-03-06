@@ -63,6 +63,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Threat');
     }
 
+    /**
+     * Validates a requst to update the users profile information
+     */
     public function updateInfo(Request $request)
     {
         $validator = Validator::make($request->all(), $this->rules);

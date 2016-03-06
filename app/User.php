@@ -18,7 +18,7 @@ class User extends Authenticatable
         'address' => 'max:255|alpha_num',
         'photo' => 'max:255',
         'password' => 'min:6|max:255',
-        'phone' => 'regex:/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/'
+        'phone' => 'regex:/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/'
     );
 
     /**

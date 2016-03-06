@@ -39,6 +39,7 @@ class Incident extends Model
             $this->location = $request->location;
             $this->uuid = Uuid::generate(4);
             $this->user_id = $user->id;
+            $this->resolved = false;
             $saved = $this->save();
 
             return $saved;

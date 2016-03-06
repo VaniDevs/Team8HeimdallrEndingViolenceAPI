@@ -53,6 +53,19 @@ $RECYCLE.BIN/
 /public/storage
 Homestead.yaml
 Homestead.json
+<<<<<<< HEAD
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+
+storage/
+.env.*.php
+.env.php
+=======
+>>>>>>> develop
 .env
 
 

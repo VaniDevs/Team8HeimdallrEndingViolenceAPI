@@ -68,7 +68,7 @@ class User extends Authenticatable
      */
     public function updateInfo(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules);
+        $validator = Validator::make($request->all(), User::$rules);
         if ($validator->fails()) {
             return false;
         } else {

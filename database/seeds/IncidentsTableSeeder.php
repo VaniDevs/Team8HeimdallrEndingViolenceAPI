@@ -18,7 +18,7 @@ class IncidentsTableSeeder extends Seeder
             'uuid' => Uuid::generate(4),
             'user_id' => 1,
             'location' => '-149,27',
-            'resolved' => true,
+            'resolved' => false,
             'created_at' => Carbon::now()
         ]);
 
@@ -26,7 +26,7 @@ class IncidentsTableSeeder extends Seeder
             'uuid' => Uuid::generate(4),
             'user_id' => 1,
             'location' => '-149,27',
-            'resolved' => false,
+            'resolved' => true,
             'created_at' => Carbon::now()
         ]);
 
@@ -42,7 +42,7 @@ class IncidentsTableSeeder extends Seeder
             'uuid' => Uuid::generate(4),
             'user_id' => 2,
             'location' => '-149,27',
-            'resolved' => false,
+            'resolved' => true,
             'created_at' => Carbon::now()
         ]);
     }

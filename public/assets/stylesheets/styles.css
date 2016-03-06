@@ -30,6 +30,7 @@ summary {
 }
 tr.error {
   background-color: #d9534f;
+  color: #FFFFFF;
 }
 audio,
 canvas,

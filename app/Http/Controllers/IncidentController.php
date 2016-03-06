@@ -10,6 +10,8 @@ use Auth;
 use App\Incident;
 use Uuid;
 use Storage;
+use App\Media;
+use File;
 
 class IncidentController extends Controller
 {
@@ -86,11 +88,36 @@ class IncidentController extends Controller
     {
         $user = Auth::guard('api')->user();
 
-        $media = $request->file('media');
+        $media = new Media;
+        $media->user_id = $user->id;
+        $media->uuid = Uuid::generate(4);
+
+        $upload_media = $request->file('media');
 
         Storage::put(
-            'media/'.$user->uuid.'.mp4',
-            file_get_contents($media->getRealPath())
+            'media/'.$media->uuid.'.mp4',
+            file_get_contents($upload_media->getRealPath())
         );
+
+        $media->save();
+
+        return response()->json([
+            'code' => 200,
+            'message' => ['File was uploaded successfully']
+        ], 200);
+    }
+
+    public function getMedia($uuid, Request $request)
+    {
+        $media = Media::where('uuid', $uuid);
+        $path = storage_path() . '/app/media/' . $uuid;
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
     }
 }

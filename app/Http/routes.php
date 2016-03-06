@@ -64,6 +64,8 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
   // Send the video that corresponds to an incident report
   Route::post('incident/media', 'IncidentController@uploadMedia');
 
+  Route::get('incident/media/{uuid}', 'IncidentController@getMedia');
+
   // ADMIN: Update an incident so that it's marked as resolved
   Route::post('incident/done', 'IncidentController@resolveIncident');
 

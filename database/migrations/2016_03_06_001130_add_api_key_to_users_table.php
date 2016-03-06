@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTable extends Migration
+class AddApiKeyToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,8 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->string('uuid', 48)->unique();
-            $table->string('type');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('api_token', 60)->unique();
         });
     }
 
@@ -28,6 +24,8 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('media');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['api_token']);
+        });
     }
 }

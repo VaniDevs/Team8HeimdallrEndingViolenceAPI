@@ -29,3 +29,17 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+Route::post('api/auth/login', 'UserController@login');
+
+Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
+  Route::get('allincidents', function() {
+    return 'AWESOME';
+  });
+});

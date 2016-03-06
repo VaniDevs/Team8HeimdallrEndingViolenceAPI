@@ -50,6 +50,9 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
   // Updating the profile with new data
   Route::post('profile', 'UserController@updateProfile');
 
+  // ADMIN: Register a new user
+  Route::post('profile/new', 'UserController@newProfile');
+
   /*
    |--
    | Incident Routes
@@ -58,6 +61,6 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth:api'], function () {
   // Send an alert to the incident reports
   Route::post('incident', 'IncidentController@alertIncident');
 
-  // Update an incident so that it's marked as resolved
+  // ADMIN: Update an incident so that it's marked as resolved
   Route::post('incident/done', 'IncidentController@resolveIncident');
 });

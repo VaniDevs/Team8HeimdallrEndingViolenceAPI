@@ -11,13 +11,13 @@ class User extends Authenticatable
     /**
      * Validation rules for a user
      */
-    private $rules = array(
+    public static $rules = array(
         'first_name' => 'min:2|max:25',
         'last_name' => 'min:2|max:25',
-        'email' => 'email|unique',
-        'address' => 'max:255|alpha',
+        'email' => 'email|unique:users',
+        'address' => 'max:255|alpha_num',
         'photo' => 'max:255',
-        'password' => 'password',
+        'password' => 'min:6|max:255',
         'phone' => 'regex:/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/'
     );
 
@@ -27,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'address', 'password', 'phone'
+        'uuid', 'first_name', 'last_name', 'email', 'address', 'password', 'phone', 'api_token'
     ];
 
     /**
@@ -90,5 +90,20 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    /**
+     * Returns a JSON representation of the USER object
+     */
+    public function getJSON()
+    {
+        return [
+            'uuid' => $this->uuid,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'email' => $this->email,
+            'address' => $this->address,
+            'phone' => $this->phone
+        ];
     }
 }

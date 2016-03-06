@@ -18,7 +18,7 @@ class IncidentsTableSeeder extends Seeder
             'uuid' => Uuid::generate(4),
             'user_id' => 1,
             'location' => '-149,27',
-            'resolved' => false,
+            'resolved' => true,
             'created_at' => Carbon::now()
         ]);
 

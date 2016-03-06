@@ -73,7 +73,7 @@ class IncidentController extends Controller
             $num = ($page - 1) * 5;
             $values = array();
 
-            $incidents = Incident::skip($num)->take(5)->get();
+            $incidents = Incident::skip($num)->take(5)->orderBy('created_at', 'desc')->get();
             foreach ($incidents as $key => $value) {
                 $values[] = $value->getJSON();
             }

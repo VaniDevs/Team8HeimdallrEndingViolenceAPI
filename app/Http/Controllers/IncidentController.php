@@ -9,6 +9,7 @@ use Response;
 use Auth;
 use App\Incident;
 use Uuid;
+use Storage;
 
 class IncidentController extends Controller
 {
@@ -19,6 +20,7 @@ class IncidentController extends Controller
             if ($incident->sendIncident($request)) {
                 return response()->json([
                     'code' => 200,
+                    'incident_id' => $incident->uuid,
                     'message' => ['Alert has been sent']
                 ]);
             } else {
@@ -59,5 +61,36 @@ class IncidentController extends Controller
                 'message' => ['You do not have permission']
             ], 403);
         }
+    }
+
+    public function getAllIncidents(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+
+        if ($user->is_admin) {
+            $incidents = Incident::skip(0)->take(5)->get();
+
+            return response()->json([
+                'code' => 200,
+                'incidents' => $incidents
+            ], 200);
+        } else {
+            return response()->json([
+                'code' => 403,
+                'message' => ['You do not have permission']
+            ], 403);
+        }
+    }
+
+    public function uploadMedia(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+
+        $media = $request->file('media');
+
+        Storage::put(
+            'media/'.$user->uuid.'.mp4',
+            file_get_contents($media->getRealPath())
+        );
     }
 }

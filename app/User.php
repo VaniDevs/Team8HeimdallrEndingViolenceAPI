@@ -37,7 +37,7 @@ class User extends Authenticatable
      */
     public function contacts()
     {
-        return $this->belongsToMany('App\Contact');
+        return $this->hasMany('App\Contact');
     }
 
     /**
@@ -45,6 +45,6 @@ class User extends Authenticatable
      */
     public function threats()
     {
-        return $this->belongsToMany('App\Threat');
+        return $this->hasMany('App\Threat');
     }
 }

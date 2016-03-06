@@ -11,6 +11,6 @@ class Contact extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasOne('App\User');
     }
 }
